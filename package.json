@@ -1,0 +1,59 @@
+{
+  "name": "asc-viewer",
+  "displayName": "ASC Viewer CAN FD",
+  "description": "View Vector ASC CAN and CAN FD log files",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["ASC", "CAN", "CAN FD", "automotive", "Vector"],
+  "icon": "images/icon.png",
+  "publisher": "zhoulufeng",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lofyzhou/asc-viewer"
+  },
+  "license": "MIT",
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "asc.viewer",
+        "displayName": "ASC Viewer",
+        "selector": [{ "filenamePattern": "*.asc" }],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "asc.openFile",
+        "title": "Open with ASC Viewer",
+        "category": "ASC"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "tsc --outDir out && vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.0",
+    "esbuild": "^0.20.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}
